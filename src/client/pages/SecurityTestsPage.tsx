@@ -119,16 +119,16 @@ export const SecurityTestsPage: React.FC = () => {
           <div className="p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/40 flex items-start gap-2.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-slate-900">1. Alice & Demo Cafe A Registration</div>
-              <div className="text-[11px] text-slate-600 mt-0.5">Alice registered as business_owner in Demo Cafe A; auto-authenticated.</div>
+              <div className="font-bold text-slate-900">1. Primary owner registration</div>
+              <div className="text-[11px] text-slate-600 mt-0.5">A new business owner registers and is automatically authenticated.</div>
             </div>
           </div>
 
           <div className="p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/40 flex items-start gap-2.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-slate-900">2. Bob & Demo Cafe B Registration</div>
-              <div className="text-[11px] text-slate-600 mt-0.5">Bob registered as business_owner in Demo Cafe B.</div>
+              <div className="font-bold text-slate-900">2. Secondary owner registration</div>
+              <div className="text-[11px] text-slate-600 mt-0.5">A second owner can register independently without crossing tenant boundaries.</div>
             </div>
           </div>
 

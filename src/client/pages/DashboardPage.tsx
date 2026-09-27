@@ -206,7 +206,7 @@ export const DashboardPage: React.FC = () => {
             className="px-4 py-2.5 bg-rose-700 hover:bg-rose-800 text-white rounded-xl text-xs font-semibold flex items-center gap-2 transition-all disabled:opacity-50 cursor-pointer shadow-xs"
           >
             <AlertOctagon className="w-3.5 h-3.5" />
-            Simulate Cross-Tenant Attack (Target: {currentBusiness?.id === 'biz_cafe_a' ? 'Demo Cafe B' : 'Demo Cafe A'}) &rarr; Expect 403 Forbidden
+            Simulate Cross-Tenant Attack (Target: {currentBusiness?.id === 'biz_cafe_a' ? 'other business' : 'other business'}) &rarr; Expect 403 Forbidden
           </button>
         </div>
 

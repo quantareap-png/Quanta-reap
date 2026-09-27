@@ -179,13 +179,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
               style={{ color: theme.textPrimary }}
               className="text-[13px] font-medium truncate leading-tight"
             >
-              {currentBusiness?.name || 'Demo Cafe'}
+              {currentBusiness?.name || 'No business configured'}
             </span>
             <span
               style={{ color: theme.textSecondary }}
               className="text-[11px] mt-0.5 truncate"
             >
-              {currentBusiness?.businessType || 'Restaurant & Bakery'}
+              {currentBusiness?.businessType || 'Awaiting setup'}
             </span>
           </div>
           <span

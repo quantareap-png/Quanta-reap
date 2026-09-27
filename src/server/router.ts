@@ -17,7 +17,6 @@ import { requireBusinessAccess, requireRole } from './middleware/tenant';
 import { recordAuditEvent, getRecentAuditEvents } from '../lib/audit';
 import { Logger } from '../lib/logger';
 import { ValidationError, UnauthorizedError, ForbiddenError, NotFoundError, formatErrorResponse } from '../lib/errors';
-import { seedDemoData } from '../db/seed-data';
 import { config } from '../config/app-config';
 import { CustomersModule } from './modules/customers/index';
 import { LoyaltyModule } from './modules/loyalty/index';
@@ -35,10 +34,8 @@ export function createApiRouter(
   const customerService = new CustomerService(db);
   const cognitoProvider = new CognitoAuthProvider();
 
-  // Initialize demo data
-  seedDemoData(db, userService, businessService, authProvider, customerService).catch(err => {
-    console.error('Failed to seed demo data:', err);
-  });
+  // Runtime seeding is intentionally disabled for a clean application start.
+  // Actual business data is created only through real authenticated user actions.
 
   // Helper for async route handling
   const asyncHandler = (fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>) => {
@@ -140,32 +137,7 @@ export function createApiRouter(
       }
 
       const normalizedEmail = email.toLowerCase().trim();
-      let userWithCreds = await userService.getUserWithCredentialsByEmail(normalizedEmail);
-
-      // Dedicated self-healing for the project owner / developer (quantareap@gmail.com)
-      if (!userWithCreds && normalizedEmail === 'quantareap@gmail.com') {
-        const { hash, salt } = await authProvider.hashPassword(password);
-        const created = await userService.createUser({
-          name: 'Quanta Developer',
-          email: 'quantareap@gmail.com',
-          passwordHash: hash,
-          salt,
-          status: 'ACTIVE',
-        });
-        await businessService.createMembership({
-          userId: created.id,
-          businessId: 'biz_cafe_a',
-          role: 'business_owner',
-          status: 'ACTIVE',
-        }).catch(() => {});
-        await businessService.createMembership({
-          userId: created.id,
-          businessId: 'biz_cafe_b',
-          role: 'business_owner',
-          status: 'ACTIVE',
-        }).catch(() => {});
-        userWithCreds = await userService.getUserWithCredentialsByEmail(normalizedEmail);
-      }
+      const userWithCreds = await userService.getUserWithCredentialsByEmail(normalizedEmail);
 
       if (!userWithCreds) {
         recordAuditEvent('AUTHENTICATION_FAILED', {

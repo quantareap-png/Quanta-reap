@@ -54,7 +54,7 @@ export const LoyaltyPage: React.FC = () => {
           </span>
         </div>
         <p style={{ color: theme.textSecondary }} className="text-[14px]">
-          2,540 registered members across your store.
+          0 registered members yet. Your loyalty program will fill with real customer activity as soon as you start creating data.
         </p>
       </div>
 
