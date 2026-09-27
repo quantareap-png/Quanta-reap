@@ -5,8 +5,7 @@
 
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { ShieldAlert, LogIn, Lock, Mail, Users, ArrowRight } from 'lucide-react';
-import { DEMO_ACCOUNTS } from '../../db/seed-data';
+import { ShieldAlert, LogIn, Lock, Mail, ArrowRight, CheckCircle2, BadgeCheck, Sparkles, Users, Target, TrendingUp } from 'lucide-react';
 
 interface LoginPageProps {
   onNavigateRegister: () => void;
@@ -40,199 +39,199 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateRegister }) => {
     }
   };
 
-  const handleQuickLogin = async (demoEmail: string, demoPass: string) => {
-    setEmail(demoEmail);
-    setPassword(demoPass);
-    setLocalError(null);
-    clearError();
+  const activeError = error || localError;
 
-    try {
-      setLoading(true);
-      await login(demoEmail, demoPass);
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Login failed';
-      setLocalError(msg);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const activeError = localError || error;
+  const productHighlights = [
+    {
+      title: 'LOYALTY',
+      description: 'Build customer relationships with structured loyalty programs, points and rewards.',
+      icon: BadgeCheck,
+    },
+    {
+      title: 'ENGAGEMENT',
+      description: 'Keep customers connected beyond individual transactions.',
+      icon: Users,
+    },
+    {
+      title: 'RETENTION',
+      description: 'Understand customer activity and identify customers who may need attention.',
+      icon: TrendingUp,
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-slate-50/50 to-slate-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <div className="inline-flex items-center justify-center p-2 rounded-2xl bg-white shadow-sm ring-1 ring-slate-200/80 mb-4">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center text-white font-extrabold text-xl shadow-xs">
-            Q
-          </div>
-        </div>
-        <h2 className="text-2xl font-bold tracking-tight text-slate-900 font-display">
-          Welcome to Quanta
-        </h2>
-        <p className="mt-1.5 text-xs text-slate-600 max-w-sm mx-auto">
-          Customer Loyalty, Retention &amp; Engagement Platform for Local Businesses
-        </p>
-      </div>
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.05),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(16,185,129,0.08),_transparent_22%),linear-gradient(180deg,#f6f7f4_0%,#eef4f1_100%)] px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[30px] border border-slate-200/80 bg-white/80 shadow-[0_28px_70px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+        <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
+          <aside className="relative overflow-hidden border-b border-slate-200/80 bg-[linear-gradient(135deg,#f8faf7_0%,#eef6f3_52%,#f6f3fb_100%)] p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-10 xl:p-12">
+            <div className="absolute -left-16 top-12 h-56 w-56 rounded-full bg-emerald-200/30 blur-3xl" />
+            <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-indigo-200/20 blur-3xl" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.04))]" />
 
-      <div className="mt-7 sm:mx-auto sm:w-full sm:max-w-md px-4 sm:px-0">
-        <div className="bg-white py-8 px-6 shadow-sm border border-slate-200/90 rounded-2xl sm:px-9">
-          {activeError && (
-            <div
-              id="login-error-alert"
-              className="mb-5 p-3.5 rounded-xl bg-red-50/80 border border-red-200 text-red-700 text-xs flex items-start gap-2.5"
-            >
-              <ShieldAlert className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-              <div>
-                <div className="font-semibold text-red-900">Authentication Failed</div>
-                <div className="text-red-700 text-[11px] mt-0.5">{activeError}</div>
-              </div>
-            </div>
-          )}
-
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="login-email" className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">
-                Work Email
-              </label>
-              <div className="mt-1.5 relative rounded-xl shadow-2xs">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <Mail className="h-4 w-4" />
+            <div className="relative max-w-xl">
+              <div className="mb-8 flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#dff7ef] text-lg font-bold text-[#0f766e] shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] ring-1 ring-emerald-200/80">
+                  Q
                 </div>
-                <input
-                  id="login-email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="block w-full pl-9 pr-3 py-2.5 text-xs font-medium bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900 focus:bg-white text-slate-900 placeholder-slate-400 transition-all outline-hidden"
-                  placeholder="name@business.com"
-                />
+                <div className="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500">QUANTAREAP</div>
               </div>
-            </div>
 
-            <div>
-              <label htmlFor="login-password" className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">
-                Password
-              </label>
-              <div className="mt-1.5 relative rounded-xl shadow-2xs">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <Lock className="h-4 w-4" />
+              <div className="space-y-6">
+                <h1 className="max-w-md text-4xl font-semibold tracking-[-0.06em] text-slate-900 sm:text-5xl lg:text-[3.35rem] lg:leading-[1.04]">
+                  Customer retention,
+                  <span className="block text-slate-700">made simpler.</span>
+                </h1>
+
+                <p className="max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
+                  Quanta helps local businesses build customer loyalty, manage rewards, understand customer activity,
+                  encourage repeat visits, and identify customers who may need attention.
+                </p>
+              </div>
+
+              <div className="mt-8 grid gap-4 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                {productHighlights.map(({ title, description, icon: Icon }) => (
+                  <div
+                    key={title}
+                    className="group rounded-[22px] border border-slate-200/80 bg-white/80 p-4 shadow-[0_14px_30px_rgba(15,23,42,0.03)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_35px_rgba(15,23,42,0.05)]"
+                  >
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">{title}</div>
+                    <p className="text-sm leading-6 text-slate-700">{description}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex items-center gap-4 rounded-[26px] border border-emerald-200/80 bg-[linear-gradient(135deg,rgba(224,242,241,0.9),rgba(255,255,255,0.82))] p-4 shadow-[0_18px_35px_rgba(16,185,129,0.08)]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-emerald-700 shadow-sm ring-1 ring-emerald-100">
+                  <Sparkles className="h-5 w-5" />
                 </div>
-                <input
-                  id="login-password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  className="block w-full pl-9 pr-3 py-2.5 text-xs font-medium bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900 focus:bg-white text-slate-900 placeholder-slate-400 transition-all outline-hidden"
-                  placeholder="••••••••"
-                />
+                <p className="text-base font-medium leading-6 text-slate-700">
+                  One platform for customer loyalty, engagement, and retention.
+                </p>
               </div>
             </div>
+          </aside>
 
-            <div className="pt-2">
-              <button
-                id="login-submit-btn"
-                type="submit"
-                disabled={loading}
-                className="w-full flex justify-center items-center gap-2 py-2.5 px-4 rounded-xl shadow-xs text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 disabled:opacity-60 transition-all cursor-pointer"
-              >
-                {loading ? (
-                  <>
-                    <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Signing in securely...</span>
-                  </>
-                ) : (
-                  <>
-                    <LogIn className="w-3.5 h-3.5" />
-                    <span>Sign in to Business</span>
-                  </>
-                )}
-              </button>
-            </div>
-          </form>
+          <main className="flex items-center justify-center bg-white px-5 py-8 sm:px-8 md:px-10 lg:px-10 xl:px-12">
+            <div className="w-full max-w-md">
+              <div className="mb-8 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-lg font-bold text-white shadow-[0_10px_20px_rgba(15,23,42,0.2)]">
+                    Q
+                  </div>
+                  <div>
+                    <div className="text-lg font-semibold tracking-[-0.03em] text-slate-900">Quanta</div>
+                  </div>
+                </div>
+                <div className="rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-600">
+                  Business Access
+                </div>
+              </div>
 
-          <div className="mt-6 pt-5 border-t border-slate-100 text-center">
-            <p className="text-xs text-slate-500">
-              New to Quanta?{' '}
-              <button
-                id="goto-register-btn"
-                onClick={onNavigateRegister}
-                className="font-semibold text-slate-900 hover:text-emerald-700 inline-flex items-center gap-1 transition-colors"
-              >
-                Create business account
-                <ArrowRight className="w-3 h-3" />
-              </button>
-            </p>
-          </div>
-        </div>
+              <div className="mb-7">
+                <h2 className="text-3xl font-semibold tracking-[-0.06em] text-slate-900">Welcome back</h2>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Sign in to manage your customer loyalty and retention program.
+                </p>
+              </div>
 
-        {/* Demo Tenancy Accounts Quick Picker */}
-        <div className="mt-5 bg-white/90 backdrop-blur-xs border border-slate-200/90 rounded-2xl p-5 shadow-xs">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-700 uppercase tracking-wider">
-              <Users className="w-3.5 h-3.5 text-slate-500" />
-              <span>1-Click Verified Demo Access</span>
-            </div>
-            <span className="text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-semibold">
-              Ready to Test
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-            {DEMO_ACCOUNTS.map(acc => {
-              const isDeveloperAccount = acc.email === 'quantareap@gmail.com';
-              return (
-                <button
-                  key={acc.email}
-                  id={`quick-login-${acc.email.split('@')[0]}`}
-                  onClick={() => handleQuickLogin(acc.email, acc.password)}
-                  disabled={loading}
-                  className={`text-left p-3 rounded-xl border transition-all flex flex-col justify-between group cursor-pointer ${
-                    isDeveloperAccount
-                      ? 'col-span-1 sm:col-span-2 border-emerald-300 bg-emerald-50/70 hover:bg-emerald-100/70 hover:border-emerald-500 shadow-xs'
-                      : 'border-slate-200 hover:border-slate-400 bg-slate-50/50 hover:bg-white'
-                  }`}
+              {activeError && (
+                <div
+                  id="login-error-alert"
+                  className="mb-6 flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-3.5 text-sm text-red-700 shadow-sm"
+                  role="alert"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className={`font-bold ${isDeveloperAccount ? 'text-emerald-950' : 'text-slate-900 group-hover:text-slate-950'}`}>
-                      {acc.name}
-                      {isDeveloperAccount && (
-                        <span className="ml-1.5 text-[10px] bg-emerald-600 text-white px-1.5 py-0.5 rounded font-normal">
-                          Active Account
-                        </span>
-                      )}
-                    </span>
-                    <span
-                      className={`text-[10px] px-2 py-0.2 rounded-full font-bold ${
-                        acc.status === 'SUSPENDED'
-                          ? 'bg-red-100 text-red-700'
-                          : acc.role === 'business_owner'
-                          ? 'bg-emerald-100 text-emerald-800'
-                          : acc.role === 'business_manager'
-                          ? 'bg-blue-100 text-blue-800'
-                          : acc.role === 'platform_admin'
-                          ? 'bg-purple-100 text-purple-800'
-                          : 'bg-slate-100 text-slate-700'
-                      }`}
-                    >
-                      {acc.role.replace('_', ' ')}
-                    </span>
+                  <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />
+                  <div>
+                    <div className="font-semibold text-red-900">Authentication failed</div>
+                    <div className="mt-0.5 text-sm text-red-700">{activeError}</div>
                   </div>
-                  <div className="text-[11px] text-slate-600 mt-1">{acc.businessName} &bull; {acc.description}</div>
-                  <div className="text-[10px] text-slate-400 mt-1 font-mono flex items-center justify-between">
-                    <span className="truncate">{acc.email}</span>
-                    <span className="text-slate-400 shrink-0 ml-1">PW: {acc.password}</span>
+                </div>
+              )}
+
+              <form className="space-y-5" onSubmit={handleSubmit} noValidate>
+                <div>
+                  <label htmlFor="login-email" className="mb-2 block text-sm font-medium text-slate-700">
+                    Work Email
+                  </label>
+                  <div className="relative">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                      <Mail className="h-4 w-4" />
+                    </div>
+                    <input
+                      id="login-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      placeholder="name@business.com"
+                      className="block w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-3 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-slate-300 focus:bg-white focus:outline-none focus:ring-4 focus:ring-slate-200"
+                    />
                   </div>
+                </div>
+
+                <div>
+                  <label htmlFor="login-password" className="mb-2 block text-sm font-medium text-slate-700">
+                    Password
+                  </label>
+                  <div className="relative">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                      <Lock className="h-4 w-4" />
+                    </div>
+                    <input
+                      id="login-password"
+                      name="password"
+                      type="password"
+                      autoComplete="current-password"
+                      required
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      className="block w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-3 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-slate-300 focus:bg-white focus:outline-none focus:ring-4 focus:ring-slate-200"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  id="login-submit-btn"
+                  type="submit"
+                  disabled={loading}
+                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3.5 text-sm font-semibold text-white shadow-[0_14px_24px_rgba(15,23,42,0.18)] transition hover:bg-slate-800 focus:outline-none focus:ring-4 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {loading ? (
+                    <>
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      <span>Signing in...</span>
+                    </>
+                  ) : (
+                    <>
+                      <LogIn className="h-4 w-4" />
+                      <span>Sign in to Business</span>
+                    </>
+                  )}
                 </button>
-              );
-            })}
-          </div>
+              </form>
+
+              <div className="mt-8 border-t border-slate-200 pt-6 text-center">
+                <p className="text-sm text-slate-600">
+                  <span className="mr-1.5">New to Quanta?</span>
+                  <button
+                    id="goto-register-btn"
+                    type="button"
+                    onClick={onNavigateRegister}
+                    className="inline-flex items-center gap-1.5 font-semibold text-slate-900 transition hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                  >
+                    <span>Create business account</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </p>
+              </div>
+            </div>
+          </main>
         </div>
       </div>
     </div>

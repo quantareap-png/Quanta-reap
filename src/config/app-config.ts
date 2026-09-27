@@ -27,21 +27,28 @@ export interface AppConfig {
   };
 }
 
+const runtimeEnv =
+  typeof import.meta !== 'undefined' && import.meta.env
+    ? import.meta.env
+    : typeof process !== 'undefined' && process.env
+      ? process.env
+      : {} as Record<string, string | undefined>;
+
 export const config: AppConfig = {
   app: {
     name: 'Quanta',
     version: '1.0.0-1B',
-    env: (process.env.NODE_ENV as AppConfig['app']['env']) || 'development',
-    url: process.env.APP_URL || 'http://localhost:3000',
+    env: (runtimeEnv.NODE_ENV as AppConfig['app']['env']) || 'development',
+    url: runtimeEnv.APP_URL || 'http://localhost:3000',
   },
   auth: {
-    provider: (process.env.AUTH_PROVIDER as 'preview' | 'cognito') || 'preview',
+    provider: (runtimeEnv.AUTH_PROVIDER as 'preview' | 'cognito') || 'preview',
     sessionDurationSeconds: 86400 * 7, // 7 days
     passwordMinLength: 8,
   },
   dynamodb: {
-    tableName: process.env.DYNAMODB_TABLE_NAME || 'quanta-main',
-    region: process.env.AWS_REGION || 'ap-south-1',
+    tableName: runtimeEnv.DYNAMODB_TABLE_NAME || 'quanta-main',
+    region: runtimeEnv.AWS_REGION || 'ap-south-1',
     isEmulated: true, // In AI Studio preview environment, in-memory DynamoDB emulation is active
   },
   defaults: {

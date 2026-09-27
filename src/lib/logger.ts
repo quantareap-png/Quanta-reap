@@ -28,6 +28,13 @@ const SENSITIVE_KEYS = new Set([
   'authorization',
 ]);
 
+const runtimeEnv =
+  typeof import.meta !== 'undefined' && import.meta.env
+    ? import.meta.env
+    : typeof process !== 'undefined' && process.env
+      ? process.env
+      : {} as Record<string, string | undefined>;
+
 function sanitizeData(obj: unknown, depth = 0): unknown {
   if (depth > 5) return '[Truncated]';
   if (!obj || typeof obj !== 'object') return obj;
@@ -71,7 +78,7 @@ export class Logger {
         ? {
             name: error.name,
             message: error.message,
-            stack: process.env.NODE_ENV === 'production' ? undefined : error.stack,
+            stack: runtimeEnv.NODE_ENV === 'production' ? undefined : error.stack,
           }
         : undefined,
     };

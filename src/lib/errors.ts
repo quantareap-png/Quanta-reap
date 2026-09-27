@@ -54,6 +54,13 @@ export class InternalServerError extends AppError {
   }
 }
 
+const runtimeEnv =
+  typeof import.meta !== 'undefined' && import.meta.env
+    ? import.meta.env
+    : typeof process !== 'undefined' && process.env
+      ? process.env
+      : {} as Record<string, string | undefined>;
+
 export function formatErrorResponse(error: unknown) {
   if (error instanceof AppError) {
     return {
@@ -78,7 +85,7 @@ export function formatErrorResponse(error: unknown) {
         code: 'INTERNAL_SERVER_ERROR',
         message: 'An internal server error occurred',
         // Stack and internal message not leaked to client in production
-        details: process.env.NODE_ENV === 'production' ? undefined : genericError,
+        details: runtimeEnv.NODE_ENV === 'production' ? undefined : genericError,
       },
     },
   };
