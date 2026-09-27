@@ -1,0 +1,6 @@
+{
+  "name": "Quanta",
+  "description": "Quanta — Customer Loyalty, Retention & Engagement Platform for Local Businesses",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
