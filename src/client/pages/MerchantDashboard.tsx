@@ -38,7 +38,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({
             style={{ color: theme.textPrimary }}
             className="text-2xl sm:text-3xl font-display font-medium tracking-tight"
           >
-            Good morning, {currentBusiness?.name || 'Business'}
+            Welcome, {currentBusiness?.name || 'Business'}
           </h1>
           <p
             style={{ color: theme.textSecondary }}

@@ -135,32 +135,32 @@ export const SecurityTestsPage: React.FC = () => {
           <div className="p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/40 flex items-start gap-2.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-slate-900">3. Alice &rarr; Cafe A Allowed</div>
-              <div className="text-[11px] text-slate-600 mt-0.5">Active membership authorizes Alice for Cafe A.</div>
+              <div className="font-bold text-slate-900">3. Business member access allowed</div>
+              <div className="text-[11px] text-slate-600 mt-0.5">Verified that an active member can access their assigned business context.</div>
             </div>
           </div>
 
           <div className="p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/40 flex items-start gap-2.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-slate-900">4. Alice &rarr; Cafe B Blocked (403)</div>
-              <div className="text-[11px] text-slate-600 mt-0.5">Server rejects cross-tenant access with 403 Forbidden.</div>
+              <div className="font-bold text-slate-900">4. Cross-tenant access blocked (403)</div>
+              <div className="text-[11px] text-slate-600 mt-0.5">Server rejects unauthorized access across tenant boundaries with 403 Forbidden.</div>
             </div>
           </div>
 
           <div className="p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/40 flex items-start gap-2.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-slate-900">5. Bob &rarr; Cafe B Allowed</div>
-              <div className="text-[11px] text-slate-600 mt-0.5">Active membership authorizes Bob for Cafe B.</div>
+              <div className="font-bold text-slate-900">5. Alternate business access allowed</div>
+              <div className="text-[11px] text-slate-600 mt-0.5">Verified that each tenant permits access only for its own authorized members.</div>
             </div>
           </div>
 
           <div className="p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/40 flex items-start gap-2.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-slate-900">6. Bob &rarr; Cafe A Blocked (403)</div>
-              <div className="text-[11px] text-slate-600 mt-0.5">Server rejects cross-tenant access with 403 Forbidden.</div>
+              <div className="font-bold text-slate-900">6. Alternate business access blocked (403)</div>
+              <div className="text-[11px] text-slate-600 mt-0.5">Server rejects requests to access a different tenant without membership.</div>
             </div>
           </div>
 

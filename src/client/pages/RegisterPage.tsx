@@ -95,7 +95,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigateLogin }) =
                   value={name}
                   onChange={e => setName(e.target.value)}
                   className="block w-full px-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900 focus:bg-white text-slate-900 bg-slate-50/50 transition-all"
-                  placeholder="e.g. Alice Walker"
+                  placeholder="e.g. Jane Smith"
                 />
               </div>
             </div>
@@ -115,7 +115,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigateLogin }) =
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   className="block w-full pl-10 pr-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900 focus:bg-white text-slate-900 bg-slate-50/50 transition-all"
-                  placeholder="alice@cafe.com"
+                  placeholder="name@yourbusiness.com"
                 />
               </div>
             </div>
@@ -156,7 +156,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigateLogin }) =
                   value={businessName}
                   onChange={e => setBusinessName(e.target.value)}
                   className="block w-full pl-10 pr-3.5 py-2.5 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900 focus:bg-white text-slate-900 bg-slate-50/50 transition-all"
-                  placeholder="e.g. Roasters Cafe"
+                  placeholder="e.g. Your Business Name"
                 />
               </div>
             </div>
